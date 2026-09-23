@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+/>
+
+<title>Pixel Link</title>
+
+<meta name="theme-color" content="#f7f4ee">
+
+<style>
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --orange:#ff6b35;
+  --orange2:#ff9d36;
+  --yellow:#ffc83d;
+  --bg:#f7f4ee;
+  --card:#ffffff;
+  --text:#191919;
+  --soft:#77736c;
+  --border:#e7e1d8;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
+  font-family:
+  -apple-system,
+  BlinkMacSystemFont,
+  "SF Pro Display",
+  "Segoe UI",
+  sans-serif;
+  background:
+  radial-gradient(circle at top right,#ffe4a0 0%,transparent 28%),
+  radial-gradient(circle at bottom left,#ffd5c2 0%,transparent 30%),
+  var(--bg);
+  color:var(--text);
+}
+
+body{
+  min-height:100dvh;
+}
+
+button{
+  font-family:inherit;
+}
+
+.hidden{
+  display:none !important;
+}
+
+/* =========================
+   CONTENEUR
+========================= */
+
+.app{
+  width:min(1180px,100%);
+  margin:auto;
+  padding:
+  max(20px,env(safe-area-inset-top))
+  22px
+  40px;
+}
+
+/* =========================
+   BARRE DU HAUT
+========================= */
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:25px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+
+  background:
+  linear-gradient(
+  135deg,
+  var(--yellow),
+  var(--orange)
+  );
+
+  box-shadow:
+  0 10px 25px
+  rgba(255,107,53,.26);
+
+  position:relative;
+}
+
+.logo::after{
+  content:"";
+  position:absolute;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:white;
+  top:17px;
+  left:17px;
+}
+
+.brand-name{
+  font-weight:900;
+  font-size:22px;
+  letter-spacing:-.6px;
+}
+
+.brand-subtitle{
+  color:var(--soft);
+  font-size:13px;
+  margin-top:2px;
+}
+
+.status{
+  padding:10px 15px;
+  border-radius:999px;
+  background:#eeeae4;
+  color:#706a62;
+  font-size:13px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.status.online{
+  background:#dff7e3;
+  color:#27883a;
+}
+
+/* =========================
+   TITRES
+========================= */
+
+h1{
+  font-size:
+  clamp(30px,5vw,53px);
+
+  line-height:1;
+  margin:0 0 12px;
+
+  letter-spacing:-2px;
+}
+
+h2{
+  margin:0;
+  font-size:24px;
+  letter-spacing:-.7px;
+}
+
+p{
+  line-height:1.5;
+}
+
+.subtitle{
+  color:var(--soft);
+  max-width:650px;
+  font-size:16px;
+}
+
+/* =========================
+   CARTES
+========================= */
+
+.card{
+  background:
+  rgba(255,255,255,.86);
+
+  border:
+  1px solid
+  rgba(255,255,255,.9);
+
+  box-shadow:
+  0 20px 55px
+  rgba(70,48,20,.10);
+
+  backdrop-filter:
+  blur(20px);
+
+  border-radius:30px;
+}
+
+/* =========================
+   MODE IPAD
+========================= */
+
+.controller-grid{
+  display:grid;
+  grid-template-columns:
+  minmax(0,1.35fr)
+  minmax(280px,.65fr);
+
+  gap:22px;
+}
+
+.editor-card{
+  padding:22px;
+}
+
+.qr-card{
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+/* =========================
+   IPAD DESSINÉ
+========================= */
+
+.ipad{
+  background:#1c1c1c;
+  padding:10px;
+
+  border-radius:35px;
+
+  aspect-ratio:1.38/1;
+
+  max-width:680px;
+  margin:auto;
+
+  box-shadow:
+  0 25px 50px
+  rgba(0,0,0,.20);
+}
+
+.ipad-screen{
+  height:100%;
+
+  border-radius:27px;
+
+  background:
+  linear-gradient(
+  145deg,
+  #fffdf8,
+  #f3eadb
+  );
+
+  padding:18px;
+
+  display:flex;
+  flex-direction:column;
+}
+
+.ipad-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  color:#716b61;
+
+  font-size:13px;
+  font-weight:800;
+
+  margin-bottom:13px;
+}
+
+/* =========================
+   MATRICE
+========================= */
+
+.pixel-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(16,1fr);
+
+  gap:3px;
+
+  width:min(100%,510px);
+
+  aspect-ratio:1/1;
+
+  margin:auto;
+
+  padding:12px;
+
+  border-radius:25px;
+
+  background:
+  linear-gradient(
+  145deg,
+  #303332,
+  #242625
+  );
+
+  touch-action:none;
+  user-select:none;
+}
+
+.pixel{
+  aspect-ratio:1/1;
+  border-radius:50%;
+
+  background:#434745;
+
+  box-shadow:
+  inset 0 1px 2px
+  rgba(255,255,255,.08);
+
+  transition:
+  transform .07s,
+  background .1s,
+  opacity .1s;
+}
+
+.editor-grid .pixel{
+  cursor:pointer;
+}
+
+.editor-grid .pixel:active{
+  transform:scale(.75);
+}
+
+/* =========================
+   QR CODE
+========================= */
+
+.qr-title{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-.7px;
+}
+
+.qr-description{
+  color:var(--soft);
+  font-size:14px;
+}
+
+#qr{
+  background:white;
+  padding:14px;
+  border-radius:22px;
+  margin:10px 0 18px;
+}
+
+#qr img,
+#qr canvas{
+  display:block;
+  border-radius:10px;
+}
+
+/* =========================
+   BOUTONS
+========================= */
+
+.btn{
+  border:0;
+
+  padding:13px 18px;
+
+  border-radius:999px;
+
+  font-weight:850;
+  font-size:14px;
+
+  cursor:pointer;
+
+  transition:
+  transform .12s,
+  box-shadow .12s;
+}
+
+.btn:active{
+  transform:scale(.96);
+}
+
+.btn-primary{
+  color:#332000;
+
+  background:
+  linear-gradient(
+  135deg,
+  var(--yellow),
+  var(--orange2)
+  );
+
+  box-shadow:
+  0 10px 25px
+  rgba(255,150,40,.25);
+}
+
+.btn-secondary{
+  background:#f1ede6;
+  color:#4c4740;
+}
+
+/* =========================
+   PANNEAU SYMBOLES
+========================= */
+
+.library{
+  margin-top:22px;
+  padding:25px;
+}
+
+.library-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.section-label{
+  color:#cb791b;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1.8px;
+  margin-bottom:7px;
+}
+
+.symbols{
+  display:grid;
+
+  grid-template-columns:
+  repeat(5,1fr);
+
+  gap:13px;
+
+  margin-top:20px;
+}
+
+.symbol{
+  border:1px solid var(--border);
+
+  background:#fffdfa;
+
+  padding:12px;
+
+  border-radius:22px;
+
+  cursor:pointer;
+
+  transition:.18s;
+
+  color:var(--text);
+}
+
+.symbol:hover{
+  transform:translateY(-3px);
+
+  box-shadow:
+  0 13px 28px
+  rgba(60,40,10,.10);
+}
+
+.symbol-preview{
+  display:grid;
+
+  grid-template-columns:
+  repeat(8,1fr);
+
+  gap:2px;
+
+  padding:7px;
+
+  aspect-ratio:1/1;
+
+  background:#303332;
+
+  border-radius:15px;
+
+  margin-bottom:8px;
+}
+
+.symbol-preview span{
+  border-radius:50%;
+  background:#474b49;
+}
+
+.symbol-name{
+  font-weight:850;
+  font-size:13px;
+}
+
+/* =========================
+   OPTIONS
+========================= */
+
+.options{
+  margin-top:22px;
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:15px;
+}
+
+.option{
+  background:#f7f3ed;
+  padding:16px;
+  border-radius:20px;
+}
+
+.option-title{
+  font-weight:850;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+input[type="range"]{
+  width:100%;
+  accent-color:var(--orange);
+}
+
+input[type="color"]{
+  width:55px;
+  height:38px;
+  border:0;
+  background:transparent;
+}
+
+/* =========================
+   MODE IPHONE
+========================= */
+
+.phone-page{
+  min-height:
+  calc(100dvh - 120px);
+
+  display:grid;
+  place-items:center;
+}
+
+.iphone{
+  width:min(370px,87vw);
+
+  aspect-ratio:
+  390/844;
+
+  padding:10px;
+
+  border-radius:55px;
+
+  background:
+  linear-gradient(
+  145deg,
+  #292929,
+  #090909
+  );
+
+  box-shadow:
+  0 35px 90px
+  rgba(0,0,0,.30);
+
+  position:relative;
+}
+
+.iphone-screen{
+  height:100%;
+
+  border-radius:46px;
+
+  overflow:hidden;
+
+  padding:
+  56px 17px
+  23px;
+
+  background:
+  radial-gradient(
+  circle at 50% 22%,
+  #ffe8a7,
+  transparent 32%
+  ),
+  linear-gradient(
+  160deg,
+  #f9f3e8,
+  #e6d8bd
+  );
+
+  display:flex;
+  flex-direction:column;
+}
+
+.notch{
+  width:44%;
+  height:29px;
+
+  background:#070707;
+
+  position:absolute;
+
+  top:10px;
+  left:50%;
+
+  transform:
+  translateX(-50%);
+
+  border-radius:
+  0 0 18px 18px;
+
+  z-index:10;
+}
+
+.phone-top{
+  display:flex;
+  justify-content:space-between;
+
+  font-size:12px;
+  font-weight:850;
+
+  color:#675e51;
+}
+
+.phone-pixels{
+  width:100%;
+  margin:auto;
+}
+
+.phone-bottom{
+  text-align:center;
+
+  color:#776f63;
+
+  font-size:12px;
+  font-weight:750;
+}
+
+/* =========================
+   ACCUEIL MOBILE
+========================= */
+
+.mobile-start{
+  max-width:500px;
+
+  margin:12vh auto;
+
+  padding:35px;
+
+  text-align:center;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+
+  bottom:30px;
+  left:50%;
+
+  transform:
+  translate(-50%,20px);
+
+  background:#191919;
+  color:white;
+
+  padding:
+  12px 18px;
+
+  border-radius:999px;
+
+  font-weight:750;
+  font-size:13px;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:.25s;
+
+  z-index:100;
+}
+
+.toast.show{
+  opacity:1;
+
+  transform:
+  translate(-50%,0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px){
+
+  .controller-grid{
+    grid-template-columns:1fr;
+  }
+
+  .symbols{
+    grid-template-columns:
+    repeat(3,1fr);
+  }
+
+}
+
+@media(max-width:550px){
+
+  .app{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .header{
+    align-items:flex-start;
+  }
+
+  .brand-subtitle{
+    display:none;
+  }
+
+  .status{
+    font-size:11px;
+  }
+
+  .library{
+    padding:18px;
+  }
+
+  .symbols{
+    grid-template-columns:
+    repeat(2,1fr);
+  }
+
+  .options{
+    grid-template-columns:1fr;
+  }
+
+  .pixel-grid{
+    gap:2px;
+    padding:8px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+
+  <div class="brand">
+
+    <div class="logo"></div>
+
+    <div>
+
+      <div class="brand-name">
+        Pixel Link
+      </div>
+
+      <div class="brand-subtitle">
+        Dessine sur l'iPad.
+        Affiche sur l'iPhone.
+      </div>
+
+    </div>
+
+  </div>
+
+  <div
+    id="status"
+    class="status"
+  >
+    Hors ligne
+  </div>
+
+</header>
+
+
+<!-- =====================================
+     IPAD
+===================================== -->
+
+<main
+  id="controller"
+  class="hidden"
+>
+
+<section>
+
+<div class="section-label">
+  MON AFFICHEUR
+</div>
+
+<h1>
+  Ton iPhone devient<br>
+  un écran Pixel.
+</h1>
+
+<p class="subtitle">
+  Dessine sur ton iPad, choisis un symbole,
+  puis regarde-le apparaître instantanément
+  sur ton iPhone 12.
+</p>
+
+</section>
+
+
+<div class="controller-grid">
+
+  <section class="card editor-card">
+
+    <div class="ipad">
+
+      <div class="ipad-screen">
+
+        <div class="ipad-bar">
+
+          <span>
+            iPad 10
+          </span>
+
+          <span id="ipadConnection">
+            ● En attente
+          </span>
+
+        </div>
+
+        <div
+          id="editorGrid"
+          class="pixel-grid editor-grid"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="card qr-card">
+
+    <div class="section-label">
+      CONNEXION
+    </div>
+
+    <div class="qr-title">
+      Scanne avec ton iPhone
+    </div>
+
+    <p class="qr-description">
+      Ouvre l'appareil photo de ton
+      iPhone 12 et scanne ce QR code.
+    </p>
+
+    <div id="qr">
+      Création du QR…
+    </div>
+
+    <button
+      id="copyButton"
+      class="btn btn-secondary"
+    >
+      Copier le lien
+    </button>
+
+  </section>
+
+</div>
+
+
+<section class="card library">
+
+  <div class="library-header">
+
+    <div>
+
+      <div class="section-label">
+        MES AFFICHAGES
+      </div>
+
+      <h2>
+        Choisis un symbole
+      </h2>
+
+    </div>
+
+    <button
+      id="clearButton"
+      class="btn btn-secondary"
+    >
+      Tout effacer
+    </button>
+
+  </div>
+
+
+  <div
+    id="symbols"
+    class="symbols"
+  ></div>
+
+
+  <div class="options">
+
+    <div class="option">
+
+      <div class="option-title">
+        Couleur
+      </div>
+
+      <input
+        id="color"
+        type="color"
+        value="#ff5733"
+      >
+
+    </div>
+
+
+    <div class="option">
+
+      <div class="option-title">
+        Luminosité
+      </div>
+
+      <input
+        id="brightness"
+        type="range"
+        min="20"
+        max="100"
+        value="100"
+      >
+
+    </div>
+
+
+    <div class="option">
+
+      <div class="option-title">
+        Dessin
+      </div>
+
+      <button
+        id="invert"
+        class="btn btn-secondary"
+      >
+        Inverser
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================
+     IPHONE
+===================================== -->
+
+<main
+  id="display"
+  class="hidden phone-page"
+>
+
+<div class="iphone">
+
+  <div class="notch"></div>
+
+  <div class="iphone-screen">
+
+    <div class="phone-top">
+
+      <span>
+        18:30
+      </span>
+
+      <span id="phoneStatus">
+        Connexion…
+      </span>
+
+    </div>
+
+
+    <div
+      id="phoneGrid"
+      class="pixel-grid phone-pixels"
+    ></div>
+
+
+    <div class="phone-bottom">
+      Contrôlé depuis l'iPad
+    </div>
+
+  </div>
+
+</div>
+
+</main>
+
+
+
+<!-- =====================================
+     ACCUEIL IPHONE NON CONNECTÉ
+===================================== -->
+
+<main
+  id="mobileHome"
+  class="hidden"
+>
+
+<section class="card mobile-start">
+
+  <div
+    class="logo"
+    style="margin:0 auto 20px"
+  ></div>
+
+  <h2>
+    Pixel Link
+  </h2>
+
+  <p class="subtitle">
+    Pour connecter cet iPhone,
+    ouvre Pixel Link sur ton iPad
+    puis scanne le QR code affiché.
+  </p>
+
+  <button
+    id="useAsController"
+    class="btn btn-primary"
+  >
+    Utiliser cet appareil comme iPad
+  </button>
+
+</section>
+
+</main>
+
+</div>
+
+
+<div
+  id="toast"
+  class="toast"
+></div>
+
+
+<!-- =====================================
+     LIBRAIRIES
+===================================== -->
+
+<script
+src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js">
+</script>
+
+<script
+src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js">
+</script>
+
+
+<script>
+
+/* =====================================
+   CONFIGURATION
+===================================== */
+
+const GRID_SIZE = 16;
+
+const state = {
+
+  pixels:
+  Array(
+    GRID_SIZE * GRID_SIZE
+  ).fill(0),
+
+  color:"#ff5733",
+
+  brightness:100,
+
+  peer:null,
+
+  connection:null,
+
+  drawing:false
+
+};
+
+
+/* =====================================
+   RACCOURCI
+===================================== */
+
+const $ =
+id =>
+document.getElementById(id);
+
+
+/* =====================================
+   URL
+===================================== */
+
+const parameters =
+new URLSearchParams(
+  window.location.search
+);
+
+const remotePeer =
+parameters.get("connect");
+
+
+/* =====================================
+   ÉCRANS
+===================================== */
+
+const controller =
+$("controller");
+
+const display =
+$("display");
+
+const mobileHome =
+$("mobileHome");
+
+
+function showScreen(screen){
+
+  controller.classList.add("hidden");
+  display.classList.add("hidden");
+  mobileHome.classList.add("hidden");
+
+  screen.classList.remove("hidden");
+
+}
+
+
+/* =====================================
+   TOAST
+===================================== */
+
+function toast(message){
+
+  const el = $("toast");
+
+  el.textContent = message;
+
+  el.classList.add("show");
+
+  setTimeout(
+    () =>
+    el.classList.remove("show"),
+    1800
+  );
+
+}
+
+
+/* =====================================
+   STATUT
+===================================== */
+
+function status(
+  message,
+  online=false
+){
+
+  $("status").textContent =
+  message;
+
+  $("status")
+  .classList
+  .toggle(
+    "online",
+    online
+  );
+
+}
+
+
+/* =====================================
+   CRÉATION MATRICE
+===================================== */
+
+function createGrid(
+  element,
+  editable=false
+){
+
+  element.innerHTML="";
+
+  for(
+    let i=0;
+    i<GRID_SIZE*GRID_SIZE;
+    i++
+  ){
+
+    const pixel =
+    document.createElement("div");
+
+    pixel.className="pixel";
+
+    pixel.dataset.index=i;
+
+    if(editable){
+
+      pixel.addEventListener(
+        "pointerdown",
+        event=>{
+
+          event.preventDefault();
+
+          state.drawing=true;
+
+          state.pixels[i] =
+          state.pixels[i]
+          ?0
+          :1;
+
+          render();
+
+          send();
+
+        }
+      );
+
+
+      pixel.addEventListener(
+        "pointerenter",
+        ()=>{
+
+          if(
+            state.drawing
+          ){
+
+            state.pixels[i]=1;
+
+            render();
+
+            send();
+
+          }
+
+        }
+      );
+
+    }
+
+    element.appendChild(pixel);
+
+  }
+
+}
+
+
+window.addEventListener(
+  "pointerup",
+  () =>
+  state.drawing=false
+);
+
+
+/* =====================================
+   AFFICHAGE PIXELS
+===================================== */
+
+function renderGrid(element){
+
+  if(
+    !element ||
+    !element.children.length
+  ){
+    return;
+  }
+
+  [...element.children]
+  .forEach(
+    (pixel,index)=>{
+
+      if(
+        state.pixels[index]
+      ){
+
+        pixel.style.background =
+        state.color;
+
+        pixel.style.opacity =
+        state.brightness/100;
+
+        pixel.style.boxShadow =
+        `
+        0 0 8px ${state.color},
+        0 0 15px ${state.color}
+        `;
+
+      }
+
+      else{
+
+        pixel.style.background =
+        "#454947";
+
+        pixel.style.opacity =
+        ".82";
+
+        pixel.style.boxShadow =
+        `
+        inset 0 1px 2px
+        rgba(255,255,255,.08)
+        `;
+
+      }
+
+    }
+  );
+
+}
+
+
+function render(){
+
+  renderGrid(
+    $("editorGrid")
+  );
+
+  renderGrid(
+    $("phoneGrid")
+  );
+
+}
+
+
+/* =====================================
+   ENVOI IPAD -> IPHONE
+===================================== */
+
+function currentState(){
+
+  return {
+
+    type:"pixel-state",
+
+    pixels:
+    state.pixels,
+
+    color:
+    state.color,
+
+    brightness:
+    state.brightness
+
+  };
+
+}
+
+
+function send(){
+
+  if(
+    state.connection &&
+    state.connection.open
+  ){
+
+    state.connection.send(
+      currentState()
+    );
+
+  }
+
+}
+
+
+/* =====================================
+   SYMBOLES
+===================================== */
+
+const patterns = {
+
+Coeur:[
+"0000000000000000",
+"0001100000110000",
+"0011110001111000",
+"0111111011111100",
+"0111111111111100",
+"0111111111111100",
+"0011111111111000",
+"0001111111110000",
+"0000111111100000",
+"0000011111000000",
+"0000001110000000",
+"0000000100000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000"
+],
+
+Smile:[
+"0000000000000000",
+"0000000000000000",
+"0001100000110000",
+"0001100000110000",
+"0000000000000000",
+"0000000000000000",
+"0010000000001000",
+"0010000000001000",
+"0001000000010000",
+"0000110001100000",
+"0000011111000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000"
+],
+
+Etoile:[
+"0000000100000000",
+"0000001110000000",
+"0000011111000000",
+"0011111111111000",
+"0001111111110000",
+"0000111111100000",
+"0000011111000000",
+"0000111111100000",
+"0001110110110000",
+"0011100100111000",
+"0111000100011100",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000"
+],
+
+Fleche:[
+"0000010000000000",
+"0000110000000000",
+"0001110000000000",
+"0011111111110000",
+"0111111111111000",
+"1111111111111100",
+"0111111111111000",
+"0011111111110000",
+"0001110000000000",
+"0000110000000000",
+"0000010000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000"
+],
+
+Check:[
+"0000000000000000",
+"0000000000000000",
+"0000000000010000",
+"0000000000110000",
+"0000000001100000",
+"0000000011000000",
+"0100000110000000",
+"0110001100000000",
+"0011011000000000",
+"0001110000000000",
+"0000100000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000",
+"0000000000000000"
+]
+
+};
+
+
+/* =====================================
+   CHARGER MOTIF
+===================================== */
+
+function loadPattern(rows){
+
+  state.pixels =
+  rows
+  .join("")
+  .split("")
+  .map(Number);
+
+  render();
+
+  send();
+
+}
+
+
+/* =====================================
+   MINIATURES
+===================================== */
+
+function createSymbols(){
+
+  const container =
+  $("symbols");
+
+  container.innerHTML="";
+
+  Object.entries(patterns)
+  .forEach(
+    ([name,rows])=>{
+
+      const button =
+      document.createElement("button");
+
+      button.className=
+      "symbol";
+
+
+      const preview =
+      document.createElement("div");
+
+      preview.className=
+      "symbol-preview";
+
+
+      const compact=[];
+
+      for(
+        let y=0;
+        y<16;
+        y+=2
+      ){
+
+        for(
+          let x=0;
+          x<16;
+          x+=2
+        ){
+
+          let on=false;
+
+          for(
+            let yy=0;
+            yy<2;
+            yy++
+          ){
+
+            for(
+              let xx=0;
+              xx<2;
+              xx++
+            ){
+
+              if(
+                rows[y+yy] &&
+                rows[y+yy][x+xx]
+                ==="1"
+              ){
+
+                on=true;
+
+              }
+
+            }
+
+          }
+
+          compact.push(on);
+
+        }
+
+      }
+
+
+      compact.forEach(
+        active=>{
+
+          const dot =
+          document.createElement("span");
+
+          if(active){
+
+            dot.style.background =
+            state.color;
+
+            dot.style.boxShadow =
+            `0 0 5px ${state.color}`;
+
+          }
+
+          preview.appendChild(dot);
+
+        }
+      );
+
+
+      const label =
+      document.createElement("div");
+
+      label.className=
+      "symbol-name";
+
+      label.textContent =
+      name;
+
+
+      button.appendChild(
+        preview
+      );
+
+      button.appendChild(
+        label
+      );
+
+
+      button.onclick =
+      () =>
+      loadPattern(rows);
+
+
+      container.appendChild(
+        button
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================
+   IPAD CONTROLEUR
+===================================== */
+
+function startController(){
+
+  showScreen(
+    controller
+  );
+
+  createGrid(
+    $("editorGrid"),
+    true
+  );
+
+  createSymbols();
+
+  render();
+
+
+  status(
+    "Création de la session…"
+  );
+
+
+  state.peer =
+  new Peer();
+
+
+  state.peer.on(
+    "open",
+    peerId=>{
+
+      status(
+        "QR prêt"
+      );
+
+
+      const url =
+      new URL(
+        window.location.href
+      );
+
+
+      url.search="";
+
+      url.hash="";
+
+
+      url.searchParams.set(
+        "connect",
+        peerId
+      );
+
+
+      const qr =
+      $("qr");
+
+      qr.innerHTML="";
+
+
+      new QRCode(
+        qr,
+        {
+
+          text:
+          url.toString(),
+
+          width:210,
+
+          height:210,
+
+          correctLevel:
+          QRCode.CorrectLevel.M
+
+        }
+      );
+
+
+      $("copyButton")
+      .onclick =
+      async ()=>{
+
+        try{
+
+          await navigator
+          .clipboard
+          .writeText(
+            url.toString()
+          );
+
+          toast(
+            "Lien copié"
+          );
+
+        }
+
+        catch(error){
+
+          window.prompt(
+            "Copie le lien :",
+            url.toString()
+          );
+
+        }
+
+      };
+
+    }
+  );
+
+
+  state.peer.on(
+    "connection",
+    connection=>{
+
+      if(
+        state.connection &&
+        state.connection.open
+      ){
+
+        state.connection.close();
+
+      }
+
+
+      state.connection =
+      connection;
+
+
+      connection.on(
+        "open",
+        ()=>{
+
+          status(
+            "iPhone connecté",
+            true
+          );
+
+          $("ipadConnection")
+          .textContent =
+          "● En direct";
+
+
+          connection.send(
+            currentState()
+          );
+
+          toast(
+            "iPhone connecté !"
+          );
+
+        }
+      );
+
+
+      connection.on(
+        "close",
+        ()=>{
+
+          status(
+            "iPhone déconnecté"
+          );
+
+          $("ipadConnection")
+          .textContent =
+          "● En attente";
+
+        }
+      );
+
+    }
+  );
+
+
+  state.peer.on(
+    "error",
+    error=>{
+
+      console.log(error);
+
+      status(
+        "Erreur de connexion"
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================
+   IPHONE RECEPTEUR
+===================================== */
+
+function startDisplay(
+  controllerId
+){
+
+  showScreen(
+    display
+  );
+
+
+  createGrid(
+    $("phoneGrid"),
+    false
+  );
+
+
+  render();
+
+
+  status(
+    "Connexion à l'iPad…"
+  );
+
+
+  state.peer =
+  new Peer();
+
+
+  state.peer.on(
+    "open",
+    ()=>{
+
+      const connection =
+      state.peer.connect(
+        controllerId,
+        {
+          reliable:true
+        }
+      );
+
+
+      state.connection =
+      connection;
+
+
+      connection.on(
+        "open",
+        ()=>{
+
+          status(
+            "Connecté à l'iPad",
+            true
+          );
+
+          $("phoneStatus")
+          .textContent =
+          "En direct";
+
+        }
+      );
+
+
+      connection.on(
+        "data",
+        data=>{
+
+          if(
+            data &&
+            data.type
+            ===
+            "pixel-state"
+          ){
+
+            state.pixels =
+            [...data.pixels];
+
+            state.color =
+            data.color;
+
+            state.brightness =
+            data.brightness;
+
+            render();
+
+          }
+
+        }
+      );
+
+
+      connection.on(
+        "close",
+        ()=>{
+
+          status(
+            "Connexion perdue"
+          );
+
+          $("phoneStatus")
+          .textContent =
+          "Hors ligne";
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================
+   ACTIONS IPAD
+===================================== */
+
+$("clearButton")
+.onclick =
+()=>{
+
+  state.pixels.fill(0);
+
+  render();
+
+  send();
+
+};
+
+
+$("invert")
+.onclick =
+()=>{
+
+  state.pixels =
+  state.pixels.map(
+    pixel =>
+    pixel ? 0 : 1
+  );
+
+  render();
+
+  send();
+
+};
+
+
+$("color")
+.oninput =
+event=>{
+
+  state.color =
+  event.target.value;
+
+  createSymbols();
+
+  render();
+
+  send();
+
+};
+
+
+$("brightness")
+.oninput =
+event=>{
+
+  state.brightness =
+  Number(
+    event.target.value
+  );
+
+  render();
+
+  send();
+
+};
+
+
+$("useAsController")
+.onclick =
+()=>{
+
+  startController();
+
+};
+
+
+/* =====================================
+   DÉMARRAGE
+===================================== */
+
+if(remotePeer){
+
+  startDisplay(
+    remotePeer
+  );
+
+}
+
+else{
+
+  const smallScreen =
+  window.matchMedia(
+    "(max-width:700px)"
+  ).matches;
+
+
+  if(smallScreen){
+
+    showScreen(
+      mobileHome
+    );
+
+    status(
+      "En attente"
+    );
+
+  }
+
+  else{
+
+    startController();
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
